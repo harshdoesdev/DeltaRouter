@@ -9,7 +9,7 @@ npm i delta-router
 
 ## Usage
 ```javascript
-import Router, { navigate } from "./src/router.js";
+import Router, { navigate } from "delta-router";
 
 const router = new Router();
 

@@ -1,4 +1,4 @@
-export const parseSearchStr = str => {
+export const parseSearchStr = (str: string) => {
     const searchParams = new URLSearchParams(str);
     const entries = searchParams.entries();
     const result = Object.fromEntries(entries);
@@ -6,7 +6,7 @@ export const parseSearchStr = str => {
     return result;
 };
 
-export const dispatchRouteEvent = (path, search) => {
+export const dispatchRouteEvent = (path: string, search: string) => {
     dispatchEvent(new CustomEvent('route', {
         cancelable: true,
         detail: {

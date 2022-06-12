@@ -3,7 +3,7 @@
   "name": "delta-router",
   "version": "1.0.2",
   "description": "![DeltaRouter.js](https://github.com/rare-earth/DeltaRouter/raw/main/banner.png) # DeltaRouter A Minimal Client-Side Router",
-  "main": "src/router.js",
+  "main": "dist/router.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
