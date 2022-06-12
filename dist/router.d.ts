@@ -19,7 +19,6 @@ export default class Router {
     listen(): void;
     attachListeners(): void;
     on(path: string, handler: RouteHandler): void;
-    off(path: string): void;
 }
 export {};
 //# sourceMappingURL=router.d.ts.map

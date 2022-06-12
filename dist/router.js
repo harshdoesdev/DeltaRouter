@@ -46,8 +46,4 @@ export default class Router {
     on(path, handler) {
         this.#routes.push({ path, handler });
     }
-    off(path) {
-        this.#routes = this.#routes
-            .filter(route => route.path !== path);
-    }
 }

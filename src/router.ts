@@ -77,9 +77,4 @@ export default class Router {
         this.#routes.push({ path, handler });
     }
 
-    off(path: string) {
-        this.#routes = this.#routes
-            .filter(route => route.path !== path);
-    }
-
 }
