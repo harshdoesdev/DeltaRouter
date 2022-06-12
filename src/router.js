@@ -47,7 +47,7 @@ export default class Router {
         dispatchRouteEvent(pathname, search.slice(1));
     }
 
-    init() {
+    listen() {
         this.notFoundRoute = this.#routes
             .find(route => route.path === '/404');
         

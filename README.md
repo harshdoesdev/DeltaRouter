@@ -18,7 +18,7 @@ router.on('/user/:uid', (params, search) => {
 
 router.on('/404', pathname => console.error(`"${pathname}" Not Found.`));
 
-router.init();
+router.listen();
 
 const routeLinks = document.querySelectorAll('[data-route-link]');
 
