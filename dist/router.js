@@ -33,17 +33,24 @@ export default class Router {
         const { pathname, search } = window.location;
         dispatchRouteEvent(pathname, search.slice(1));
     }
+    on(path, handler) {
+        this.#routes.push({ path, handler });
+    }
     listen() {
         this.notFoundRoute = this.#routes
             .find(route => route.path === '/404');
         this.attachListeners();
+    }
+    unlisten() {
+        this.detachListeners();
     }
     attachListeners() {
         addEventListener('route', this.boundHandleRoute);
         addEventListener('popstate', this.boundHandlePopState);
         dispatchEvent(new PopStateEvent('popstate', { state: 'router-ignore' }));
     }
-    on(path, handler) {
-        this.#routes.push({ path, handler });
+    detachListeners() {
+        removeEventListener('route', this.boundHandleRoute);
+        removeEventListener('popstate', this.boundHandlePopState);
     }
 }

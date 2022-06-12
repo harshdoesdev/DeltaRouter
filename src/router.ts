@@ -59,11 +59,19 @@ export default class Router {
         dispatchRouteEvent(pathname, search.slice(1));
     }
 
+    on(path: string, handler: RouteHandler) {
+        this.#routes.push({ path, handler });
+    }
+
     listen() {
         this.notFoundRoute = this.#routes
             .find(route => route.path === '/404');
         
         this.attachListeners();
+    }
+
+    unlisten() {
+        this.detachListeners();
     }
 
     attachListeners() {
@@ -73,8 +81,9 @@ export default class Router {
         dispatchEvent(new PopStateEvent('popstate', { state: 'router-ignore' }));
     }
 
-    on(path: string, handler: RouteHandler) {
-        this.#routes.push({ path, handler });
+    detachListeners() {
+        removeEventListener('route', this.boundHandleRoute);
+        removeEventListener('popstate', this.boundHandlePopState);
     }
 
 }

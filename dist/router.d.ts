@@ -16,9 +16,11 @@ export default class Router {
     boundHandlePopState: any;
     handleRoute(e: RouteEvent): void;
     handlePopState(): void;
-    listen(): void;
-    attachListeners(): void;
     on(path: string, handler: RouteHandler): void;
+    listen(): void;
+    unlisten(): void;
+    attachListeners(): void;
+    detachListeners(): void;
 }
 export {};
 //# sourceMappingURL=router.d.ts.map
