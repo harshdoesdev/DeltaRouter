@@ -24,7 +24,7 @@ export default class Router {
 
         if(!found) {
             if(this.notFoundRoute) {
-               this.notFoundRoute.handler(path); 
+               this.notFoundRoute.handler(path, null, this); 
             }
             console.error('Not Found.');
             return;
