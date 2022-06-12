@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "delta-router",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "![DeltaRouter.js](https://github.com/rare-earth/DeltaRouter/raw/main/banner.png) # DeltaRouter A Minimal Client-Side Router",
   "main": "src/router.js",
   "scripts": {
