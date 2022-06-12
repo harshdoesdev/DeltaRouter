@@ -1,0 +1,25 @@
+{
+  "type": "module",
+  "name": "delta-router",
+  "version": "1.0.0",
+  "description": "![DeltaRouter.js](https://github.com/rare-earth/DeltaRouter/raw/main/banner.png) # DeltaRouter A Minimal Client-Side Router",
+  "main": "src/router.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "router",
+    "minimal",
+    "client-side"
+  ],
+  "author": "Harsh Singh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rare-earth/DeltaRouter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rare-earth/DeltaRouter/issues"
+  },
+  "homepage": "https://github.com/rare-earth/DeltaRouter#readme"
+}
