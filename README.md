@@ -2,14 +2,9 @@
 # DeltaRouter
 A Minimal Client-Side Router
 
-## Install
-```bash
-npm i delta-router
-```
-
 ## Usage
 ```javascript
-import Router, { navigate } from "delta-router";
+import Router, { navigate } from "https://cdn.jsdelivr.net/gh/rare-earth/DeltaRouter/dist/router.js";
 
 const router = new Router();
 
