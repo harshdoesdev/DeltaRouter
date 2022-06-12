@@ -19,6 +19,8 @@ export const navigate = (path: string) => {
     dispatchRouteEvent(pathname, search);
 };
 
+const ERROR_PAGE_PATH = '/404';
+
 export default class Router {
 
     #routes = []
@@ -34,9 +36,9 @@ export default class Router {
         const found = this.#routes
             .find(route => matchRoute(route.path, path));
 
-        if(!found) {
+        if(!found || path === ERROR_PAGE_PATH) {
             if(this.notFoundRoute) {
-               this.notFoundRoute.handler(path, null, this); 
+               this.notFoundRoute.handler(null, null, this); 
             }
             console.error('Not Found.');
             return;
@@ -65,7 +67,7 @@ export default class Router {
 
     listen() {
         this.notFoundRoute = this.#routes
-            .find(route => route.path === '/404');
+            .find(route => route.path === ERROR_PAGE_PATH);
         
         this.attachListeners();
     }

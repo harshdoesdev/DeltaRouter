@@ -16,7 +16,7 @@ router.on('/user/:uid', (params, search) => {
     console.log(params, search)
 });
 
-router.on('/404', pathname => console.error(`"${pathname}" Not Found.`));
+router.on('/404', () => console.error(`Page Not Found.`));
 
 router.listen();
 
