@@ -24,7 +24,6 @@ routeLinks.forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
         const path = e.target.getAttribute('href');
-        console.log(router.currentPath)
         navigate(path, router.currentPath === path);
     });
 });
