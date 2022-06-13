@@ -1,14 +1,18 @@
-export const parseSearchStr = (str) => {
+import { splitPath } from "./match-route.js";
+export const parseSearchStr = str => {
     const searchParams = new URLSearchParams(str);
     const entries = searchParams.entries();
     const result = Object.fromEntries(entries);
     return result;
 };
-export const dispatchRouteEvent = (path, search) => {
+export const dispatchRouteEvent = (pathname, search) => {
     dispatchEvent(new CustomEvent('route', {
         cancelable: true,
         detail: {
-            path,
+            path: {
+                pathname,
+                parts: splitPath(pathname)
+            },
             search
         }
     }));

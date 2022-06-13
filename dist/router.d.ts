@@ -1,26 +1,15 @@
-interface RouteHandler {
-    (params: string[], search: any, router: Router): any;
-}
-interface RouteEvent {
-    detail: {
-        path: string;
-        search: string;
-    };
-}
-export declare const navigate: (path: string) => void;
+export function navigate(path: any, replace?: boolean): void;
 export default class Router {
-    #private;
-    currentRoute: any;
-    notFoundRoute: any;
+    currentPath: any;
     boundHandleRoute: any;
     boundHandlePopState: any;
-    handleRoute(e: RouteEvent): void;
+    handleRoute(e: any): void;
     handlePopState(): void;
-    on(path: string, handler: RouteHandler): void;
+    on(pathname: any, handler: any): void;
     listen(): void;
     unlisten(): void;
     attachListeners(): void;
     detachListeners(): void;
+    #private;
 }
-export {};
 //# sourceMappingURL=router.d.ts.map

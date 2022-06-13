@@ -4,19 +4,17 @@ A Minimal Client-Side Router
 
 ## Usage
 ```javascript
-import Router, { navigate } from "https://cdn.jsdelivr.net/gh/rare-earth/DeltaRouter/dist/router.js";
+import Router, { navigate } from "delta-router";
 
 const router = new Router();
 
-router.on('/', () => {
-    console.log('Welcome Home!');
-});
+router.on('/', () => console.log('Welcome Home!'));
 
-router.on('/user/:uid', (params, search) => {
-    console.log(params, search)
-});
+router.on('/user/:uid', (params, search) => console.log(params, search));
 
-router.on('/404', () => console.error(`Page Not Found.`));
+router.on('/user/:uid/post/:postId', (params) => console.log(params));
+
+router.on('*', (params, search, pathname) => console.error(`"${pathname}" not found.`));
 
 router.listen();
 
@@ -25,7 +23,9 @@ const routeLinks = document.querySelectorAll('[data-route-link]');
 routeLinks.forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
-        navigate(e.target.getAttribute('href'));
+        const path = e.target.getAttribute('href');
+        console.log(router.currentPath)
+        navigate(path, router.currentPath === path);
     });
 });
 ```

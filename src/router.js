@@ -1,58 +1,37 @@
-import { getParams, matchRoute } from "./match-route.js";
+import { getParams, matchRoute, splitPath } from "./match-route.js";
 import { dispatchRouteEvent, parseSearchStr } from "./utils.js";
 
-interface RouteHandler {
-    (params: string[], search: any, router: Router)
-}
+export const navigate = (path, replace = false) => {
+    const [pathname, search = ''] = path.split('?');
 
-interface RouteEvent {
-    detail: {
-        path: string,
-        search: string
-    }
-}
-
-export const navigate = (path: string) => {
-    const [ pathname, search = '' ] = path.split('?');
-
-    history.pushState({}, '', path);
+    history[replace ? 'replaceState' : 'pushState']({}, '', path);
     dispatchRouteEvent(pathname, search);
 };
-
-const ERROR_PAGE_PATH = '/404';
 
 export default class Router {
 
     #routes = []
-    currentRoute = null
-    notFoundRoute = null
+    currentPath = null
 
     boundHandleRoute = this.handleRoute.bind(this)
     boundHandlePopState = this.handlePopState.bind(this)
 
-    handleRoute(e: RouteEvent) {
+    handleRoute(e) {
         const { path, search } = e.detail;
 
         const found = this.#routes
             .find(route => matchRoute(route.path, path));
 
-        if(!found || path === ERROR_PAGE_PATH) {
-            if(this.notFoundRoute) {
-               this.notFoundRoute.handler(null, null, this); 
-            }
+        if(!found) {
             console.error('Not Found.');
-            return;
-        }
-
-        if(found === this.currentRoute) {
             return;
         }
 
         const params = getParams(found.path, path);
 
-        found.handler(params, parseSearchStr(search), this);
+        this.currentPath = path.pathname;
 
-        this.currentRoute = found;
+        found.handler(params, parseSearchStr(search), this.currentPath);
     }
 
     handlePopState() {
@@ -61,14 +40,17 @@ export default class Router {
         dispatchRouteEvent(pathname, search.slice(1));
     }
 
-    on(path: string, handler: RouteHandler) {
-        this.#routes.push({ path, handler });
+    on(pathname, handler) {
+        this.#routes.push({ 
+            path: { 
+                pathname, 
+                parts: splitPath(pathname) 
+            }, 
+            handler 
+        });
     }
 
     listen() {
-        this.notFoundRoute = this.#routes
-            .find(route => route.path === ERROR_PAGE_PATH);
-        
         this.attachListeners();
     }
 
