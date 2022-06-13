@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "delta-router",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "DeltaRouter - A Minimal Client-Side Router",
   "main": "dist/router.js",
   "scripts": {
