@@ -1,21 +1,4 @@
-const isParam = v => v[0] === ':';
-
-const toParamName = v => v.slice(1);
-
-export const splitPath = path => path.split('/').filter(x => x);
-
-export const getParams = (routePath, requestedPath) => {
-    const { parts } = routePath;
-    
-    return parts
-        .filter(isParam)
-        .map(toParamName)
-        .reduce((params, paramName, index) => {
-            params[paramName] = requestedPath.parts[index];
-
-            return params;
-        }, {});
-};
+import { isParam } from "./utils.js";
 
 export const matchRoute = (routePath, requestedPath) => {
     const { pathname, parts  } = routePath;

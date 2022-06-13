@@ -1,5 +1,6 @@
-import { getParams, matchRoute, splitPath } from "./match-route.js";
-import { dispatchRouteEvent } from "./utils.js";
+import { getParams } from "./get-params.js";
+import { matchRoute } from "./match-route.js";
+import { dispatchRouteEvent, splitPath } from "./utils.js";
 
 export const navigate = (path, replace = false) => {
     const [pathname, searchString = ''] = path.split('?');

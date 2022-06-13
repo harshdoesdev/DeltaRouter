@@ -1,4 +1,6 @@
-import { splitPath } from "./match-route.js";
+export const isParam = v => v[0] === ':';
+export const toParamName = v => v.slice(1);
+export const splitPath = path => path.split('/').filter(x => x);
 const parseSearchStr = str => {
     const searchParams = new URLSearchParams(str);
     const entries = searchParams.entries();
