@@ -1,5 +1,2 @@
-export function parseSearchStr(str: any): {
-    [k: string]: string;
-};
-export function dispatchRouteEvent(pathname: any, search: any): void;
+export function dispatchRouteEvent(pathname: any, searchString: any): void;
 //# sourceMappingURL=utils.d.ts.map

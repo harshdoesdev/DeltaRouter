@@ -1,9 +1,9 @@
 import { getParams, matchRoute, splitPath } from "./match-route.js";
-import { dispatchRouteEvent, parseSearchStr } from "./utils.js";
+import { dispatchRouteEvent } from "./utils.js";
 export const navigate = (path, replace = false) => {
-    const [pathname, search = ''] = path.split('?');
+    const [pathname, searchString = ''] = path.split('?');
     history[replace ? 'replaceState' : 'pushState']({}, '', path);
-    dispatchRouteEvent(pathname, search);
+    dispatchRouteEvent(pathname, searchString);
 };
 export default class Router {
     #routes = [];
@@ -20,11 +20,11 @@ export default class Router {
         }
         const params = getParams(found.path, path);
         this.currentPath = path.pathname;
-        found.handler(params, parseSearchStr(search), this.currentPath);
+        found.handler(params, search, this.currentPath);
     }
     handlePopState() {
         const { pathname, search } = window.location;
-        dispatchRouteEvent(pathname, search.slice(1));
+        dispatchRouteEvent(pathname, search);
     }
     on(pathname, handler) {
         this.#routes.push({
