@@ -53,6 +53,8 @@ export default class Router {
 
     listen() {
         this.attachListeners();
+
+        dispatchEvent(new PopStateEvent('popstate', { state: 'router-ignore' }));
     }
 
     unlisten() {
@@ -62,8 +64,6 @@ export default class Router {
     attachListeners() {
         addEventListener('route', this.boundHandleRoute);
         addEventListener('popstate', this.boundHandlePopState);
-        
-        dispatchEvent(new PopStateEvent('popstate', { state: 'router-ignore' }));
     }
 
     detachListeners() {
