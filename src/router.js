@@ -53,6 +53,16 @@ export default class Router {
      * listen - attach listeners to start listening for route events
      */
     listen() {
+        // put wildcard routes in the end of the routes array
+        this._routes.forEach((route, index) => {
+            if(route.path.pathname !== '*') {
+                return;
+            }
+
+            this._routes.splice(index, 1);
+            this._routes.push(route);
+        });
+
         this.attachListeners();
 
         dispatchEvent(new PopStateEvent('popstate', { state: 'router-ignore' }));
