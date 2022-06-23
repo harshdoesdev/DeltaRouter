@@ -2,6 +2,11 @@
 # DeltaRouter
 A Minimal Client-Side Router
 
+## Installation
+```bash
+npm i delta-router
+```
+
 ## Usage
 ```javascript
 import Router, { navigate } from "delta-router";
