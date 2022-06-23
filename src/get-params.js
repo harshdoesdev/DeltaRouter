@@ -1,6 +1,6 @@
 import { isParam, toParamName } from "./utils.js";
 
-export const getParams = (routePath, requestedPath) => {
+export default function getParams(routePath, requestedPath) {
     const { parts } = routePath;
     
     return parts.reduce((params, current, index) => {
@@ -12,4 +12,4 @@ export const getParams = (routePath, requestedPath) => {
 
         return params;
     }, {});
-};
+}

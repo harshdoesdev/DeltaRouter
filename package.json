@@ -3,9 +3,10 @@
   "name": "delta-router",
   "version": "0.0.1",
   "description": "DeltaRouter - A Minimal Client-Side Router",
-  "main": "dist/router.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "tsc --build --clean",
+    "build": "tsc --build"
   },
   "keywords": [
     "router",

@@ -1,8 +1,7 @@
 import { isParam } from "./utils.js";
 const matchOrCatchAll = (a, b) => a === b || a === '*';
-export const matchRoute = (routePath, requestedPath) => {
+export default function matchRoute(routePath, requestedPath) {
     const { pathname, parts } = routePath;
-    // if(pathname === requestedPath.pathname || pathname === '*') {
     if (matchOrCatchAll(pathname, requestedPath.pathname)) {
         return pathname;
     }
@@ -11,4 +10,5 @@ export const matchRoute = (routePath, requestedPath) => {
     }
     const found = parts.every((curr, index) => (curr === requestedPath.parts[index]) || isParam(curr));
     return found;
-};
+}
+;

@@ -1,24 +1,14 @@
 {
     // Change this to match your project
-    "include": ["src/**/*"],
+    "include": ["src"],
     "compilerOptions": {
       "rootDir": "./src",
-      "module": "ES6",
-      "target": "ES2022",
-      // Tells TypeScript to read JS files, as
-      // normally they are ignored as source files
+      "module": "ESNext",
+      "target": "ES2019",
+      "esModuleInterop": true,
+      "removeComments": true,  
       "allowJs": true,
-      // Generate d.ts files
+      "outDir": "./dist",
       "declaration": true,
-      // This compiler run should
-      // only output d.ts files
-      // "emitDeclarationOnly": true,
-      // Types should go into this directory.
-      // Removing this would place the .d.ts files
-      // next to the .js files
-      "outDir": "dist",
-      // go to js file when using IDE functions like
-      // "Go to Definition" in VSCode
-      "declarationMap": true
     }
 }

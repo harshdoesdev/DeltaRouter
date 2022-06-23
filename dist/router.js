@@ -1,34 +1,31 @@
-import { getParams } from "./get-params.js";
-import { matchRoute } from "./match-route.js";
+import getParams from "./get-params.js";
+import matchRoute from "./match-route.js";
 import { dispatchRouteEvent, splitPath } from "./utils.js";
-export const navigate = (path, replace = false) => {
-    const [pathname, searchString = ''] = path.split('?');
-    history[replace ? 'replaceState' : 'pushState']({}, '', path);
-    dispatchRouteEvent(pathname, searchString);
-};
 export default class Router {
-    #routes = [];
-    currentPath = null;
-    boundHandleRoute = this.handleRoute.bind(this);
-    boundHandlePopState = this.handlePopState.bind(this);
-    handleRoute(e) {
+    constructor() {
+        this._routes = [];
+        this._currentPath = null;
+        this.bound_handleRoute = this._handleRoute.bind(this);
+        this.bound_handlePopState = this._handlePopState.bind(this);
+    }
+    _handleRoute(e) {
         const { path, search } = e.detail;
-        const found = this.#routes
+        const found = this._routes
             .find(route => matchRoute(route.path, path));
         if (!found) {
             console.error('Not Found.');
             return;
         }
         const params = getParams(found.path, path);
-        this.currentPath = path.pathname;
-        found.handler(params, search, this.currentPath);
+        this._currentPath = path.pathname;
+        found.handler(params, search, this._currentPath);
     }
-    handlePopState() {
+    _handlePopState() {
         const { pathname, search } = window.location;
         dispatchRouteEvent(pathname, search);
     }
     on(pathname, handler) {
-        this.#routes.push({
+        this._routes.push({
             path: {
                 pathname,
                 parts: splitPath(pathname)
@@ -44,11 +41,11 @@ export default class Router {
         this.detachListeners();
     }
     attachListeners() {
-        addEventListener('route', this.boundHandleRoute);
-        addEventListener('popstate', this.boundHandlePopState);
+        addEventListener('route', this.bound_handleRoute);
+        addEventListener('popstate', this.bound_handlePopState);
     }
     detachListeners() {
-        removeEventListener('route', this.boundHandleRoute);
-        removeEventListener('popstate', this.boundHandlePopState);
+        removeEventListener('route', this.bound_handleRoute);
+        removeEventListener('popstate', this.bound_handlePopState);
     }
 }

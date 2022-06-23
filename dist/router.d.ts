@@ -1,15 +1,13 @@
-export function navigate(path: any, replace?: boolean): void;
 export default class Router {
-    currentPath: any;
-    boundHandleRoute: any;
-    boundHandlePopState: any;
-    handleRoute(e: any): void;
-    handlePopState(): void;
-    on(pathname: any, handler: any): void;
+    _routes: any[];
+    _currentPath: any;
+    bound_handleRoute: any;
+    bound_handlePopState: any;
+    _handleRoute(e: any): void;
+    _handlePopState(): void;
+    on(pathname: string, handler: Function): void;
     listen(): void;
     unlisten(): void;
     attachListeners(): void;
     detachListeners(): void;
-    #private;
 }
-//# sourceMappingURL=router.d.ts.map
