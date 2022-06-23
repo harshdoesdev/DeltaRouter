@@ -37,7 +37,7 @@ export default class Router {
     /**
      * on - add route handler
      * @param {string} pathname route path
-     * @param {function} handler route handler
+     * @param {routeHandler} handler route handler
      */
     on(pathname, handler) {
         this._routes.push({ 
@@ -49,12 +49,18 @@ export default class Router {
         });
     }
 
+    /**
+     * listen - attach listeners to start listening for route events
+     */
     listen() {
         this.attachListeners();
 
         dispatchEvent(new PopStateEvent('popstate', { state: 'router-ignore' }));
     }
 
+    /**
+     * unlisten - detach listeners for route events
+     */
     unlisten() {
         this.detachListeners();
     }

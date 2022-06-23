@@ -6,7 +6,8 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "tsc --build --clean",
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "doc": "typedoc"
   },
   "keywords": [
     "router",
